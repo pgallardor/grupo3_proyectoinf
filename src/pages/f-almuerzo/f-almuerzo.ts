@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpClient } from "@angular/common/http";
 
 /**
  * Generated class for the FAlmuerzoPage page.
@@ -14,8 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'f-almuerzo.html',
 })
 export class FAlmuerzoPage {
+	casinos: any;	
+  constructor(public navCtrl: NavController, public http: HttpClient) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	this.http.get('http://localhost:3000/jonadb').subscribe(response => {
+	      console.log(response);
+	      this.casinos = response;
+	    })
+
   }
 
   ionViewDidLoad() {
