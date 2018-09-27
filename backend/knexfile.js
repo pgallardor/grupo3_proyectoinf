@@ -6,7 +6,8 @@ module.exports = {
             user: 'jonasaavedra',
             password: 'pi2018-2',
             database: 'jonasaavedra' //??
-        }
+        },
+        searchPath: ['casino_udec']
     },
     production: {
         client: 'pg',
