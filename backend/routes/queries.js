@@ -1,0 +1,87 @@
+const express = require('express');
+let router = express.Router();
+const knex = require('../db/knex');
+
+router.get('/', function (req, res) {
+  res.send("wena we funka");
+});
+
+router.get('/opciones/:id', function (req, res) {
+  knex('lleva as l')
+    .join('agregado as a', 'a.id', 'l.id_agregado')
+    .join('casino as c', 'c.id', 'l.id_casino')
+    .join('menu as m', 'm.id', 'l.id_menu')
+    .join('plato as p', 'p.id', 'l.id_plato')
+    .distinct('p.nombre', 'c.nombre', 'm.tipo')
+    .select(['p.nombre as nombre_plato', 'm.tipo', 'c.nombre', 'l.fecha_publicacion'])
+    .where('c.id', '=', req.params.id)
+    .orderBy('l.fecha_publicacion', 'asc')
+    .then(function (response) {
+      res.json(response);
+    })
+});
+
+router.get('/casinos/:id_tipo', function (req, res) {
+  knex('lleva as l')
+    .join('agregado as a', 'a.id', 'l.id_agregado')
+    .join('casino as c', 'c.id', 'l.id_casino')
+    .join('menu as m', 'm.id', 'l.id_menu')
+    .join('plato as p', 'p.id', 'l.id_plato')
+    .distinct('p.nombre', 'c.nombre', 'm.tipo')
+    .select(['p.nombre as nombre_plato', 'm.tipo', 'c.nombre', 'l.fecha_publicacion'])
+    .where('m.id', '=', req.params.id_tipo)
+    .orderBy('l.fecha_publicacion', 'asc')
+    .then(function (response) {
+      res.json(response);
+    })
+})
+
+router.get('/num-menus/', function (req, res) {
+  knex.raw('select casino.nombre, count (distinct lleva.id_plato) ' +
+    'from menu, casino, ofrece, lleva ' +
+    'where ofrece.id_menu = menu.id and ' +
+    'casino.id = ofrece.id_casino and ' +
+    'lleva.id_menu = ofrece.id_menu and ' +
+    'lleva.id_casino = casino.id' +
+    'group by (casino.nombre)')
+    .then(function (response) {
+      res.json(response.rows);
+    })
+})
+
+router.get('/num-tipos', function (req, res) {
+  knex.raw('select menu.tipo, count (distinct lleva.id_plato) ' +
+    'from menu, casino, ofrece, lleva ' +
+    'where ofrece.id_menu = menu.id and ' +
+    'casino.id = ofrece.id_casino and ' +
+    'lleva.id_menu = ofrece.id_menu and ' +
+    'lleva.id_casino = casino.id ' +
+    'group by (menu.tipo)')
+    .then(function (response) {
+      res.json(response.rows);
+    })
+})
+
+router.get('/detalle/:casino/:plato', function (req, res) {
+  knex('lleva as l').join('plato as p', 'p.id', 'l.id_plato')
+    .join('agregado as a', 'a.id', 'l.id_agregado')
+    .join('casino as c', 'c.id', 'l.id_casino')
+    .join('menu as m', 'm.id', 'l.id_menu')
+    .orderBy(['c.nombre', 'p.nombre', 'l.precio'], 'asc')
+    .where({
+      id_casino: req.params.casino,
+      id_plato: req.params.plato
+    })
+    .select(['p.nombre as nombre_plato', 'c.nombre as nombre_casino', 'a.tipo_agregado', 'm.tipo', 'l.precio'])
+    .then(function (response) {
+      res.json(response);
+    })
+})
+
+router.get('/test1', function (req, res) {
+  knex('plato').select().then(function (response) {
+    res.json(response);
+  })
+})
+
+module.exports = router;
