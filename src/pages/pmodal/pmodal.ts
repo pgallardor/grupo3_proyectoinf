@@ -20,6 +20,10 @@ export class PmodalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PmodalPage');
+	const data = this.navParams.get('data');
+		console.log("asd");
+		console.log(data);
+
   }
 
 }

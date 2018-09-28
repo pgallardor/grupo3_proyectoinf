@@ -10,4 +10,6 @@ import { PmodalPage } from './pmodal';
     IonicPageModule.forChild(PmodalPage),
   ],
 })
-export class PmodalPageModule {}
+export class PmodalPageModule {
+	
+}

@@ -30,8 +30,11 @@ export class FAlmuerzoPage {
   }
 
 
-   openModal() {
-    const myModal = this.modal.create('PmodalPage');
+   openModal(myvar) {
+
+
+
+    const myModal = this.modal.create('PmodalPage', {data: myvar});
 
     myModal.present();
     };
