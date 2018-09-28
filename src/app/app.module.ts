@@ -11,7 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {BuscadorPage} from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
 import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HttpClient} from "@angular/common/http";
 
 @NgModule({
   declarations: [

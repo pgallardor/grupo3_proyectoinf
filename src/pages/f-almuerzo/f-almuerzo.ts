@@ -15,12 +15,12 @@ import { HttpClient } from "@angular/common/http";
   templateUrl: 'f-almuerzo.html',
 })
 export class FAlmuerzoPage {
-	casinos: any;	
+	casino: any = {};	
   constructor(public navCtrl: NavController, public http: HttpClient) {
 
-	this.http.get('http://localhost:3000/jonadb').subscribe(response => {
+	this.http.get('http://localhost:3000/queries/opciones/1').subscribe(response => {
 	      console.log(response);
-	      this.casinos = response;
+	      this.casino = response;
 	    })
 
   }
