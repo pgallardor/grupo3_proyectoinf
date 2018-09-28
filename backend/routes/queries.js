@@ -65,7 +65,7 @@ router.get('/num-menus/', function (req, res) {
     'where ofrece.id_menu = menu.id and ' +
     'casino.id = ofrece.id_casino and ' +
     'lleva.id_menu = ofrece.id_menu and ' +
-    'lleva.id_casino = casino.id' +
+    'lleva.id_casino = casino.id ' +
     'group by (casino.nombre)')
     .then(function (response) {
       res.json(response.rows);
@@ -96,6 +96,36 @@ router.get('/detalle/:casino/:plato', function (req, res) {
       id_plato: req.params.plato
     })
     .select(['p.nombre as nombre_plato', 'c.nombre as nombre_casino', 'a.tipo_agregado', 'm.tipo', 'l.precio'])
+    .then(function (response) {
+      res.json(response);
+    })
+})
+
+router.get('/nombre-casino/:casino', function (req,res){
+  knex('casino as c').select(['c.nombre'])
+    .where({
+      id : req.params.casino
+    })
+    .then(function (response) {
+      res.json(response);
+  })
+})
+
+router.get('/nombre-menu/:menu', function (req,res){
+  knex('menu as m').select(['m.tipo'])
+    .where({
+      id : req.params.menu
+    })
+    .then(function (response) {
+      res.json(response);
+    })
+})
+
+router.get('/nombre-plato/:plato', function (req,res){
+  knex('plato as p').select(['p.nombre'])
+    .where({
+      id : req.params.plato
+    })
     .then(function (response) {
       res.json(response);
     })
