@@ -7,23 +7,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>f_almuerzo</ion-title>
+    <ion-title *ngIf="casino">{{casino.casino}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="casino">
 
-  <h3>Nombre casino</h3>
-
-  <ion-item-group *ngFor="let c of casinos">
+  <ion-item-group *ngFor="let c of casino.parsed_response">
 
       <ion-item-divider color="dark">
       <ion-row center>  
         <ion-col col-9>         
           <div text-center>
-            {{c.nombre}} 
+            {{c.tipo}} 
           </div>
         </ion-col>  
         <ion-col col-auto> 
@@ -42,7 +40,7 @@
       </ion-item-divider>
 
       <ion-slides style="height: 75px" pager>
-            <ion-slide *ngFor="let m of c.tipo_menu"><h1>{{m}}</h1></ion-slide>
+            <ion-slide *ngFor="let m of c.menus"><h5>{{m.plato}}</h5></ion-slide>
   		</ion-slides>
 
   </ion-item-group>
