@@ -20,19 +20,30 @@
   <ion-item-group *ngFor="let c of casinos">
 
       <ion-item-divider color="dark">
-        {{c.nombre}}
+      <ion-row center>  
+        <ion-col col-9>         
+          <div text-center>
+            {{c.nombre}} 
+          </div>
+        </ion-col>  
+        <ion-col col-auto> 
+
+        <div text-center>
+
+          <button ion-button icon-only color="secondary" round small>
+            <ion-icon name="information-circle"  >
+            </ion-icon>
+          </button>
+          
+        </div>
+          
+        </ion-col>
+      </ion-row> 
       </ion-item-divider>
 
       <ion-slides style="height: 75px" pager>
-
-          
-            
             <ion-slide *ngFor="let m of c.tipo_menu"><h1>{{m}}</h1></ion-slide>
-        
-    
-
   		</ion-slides>
-
 
   </ion-item-group>
 
