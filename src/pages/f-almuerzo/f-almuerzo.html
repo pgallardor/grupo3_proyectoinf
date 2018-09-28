@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding *ngIf="casino">
+<ion-content padding-top *ngIf="casino">
 
   <ion-item-group *ngFor="let c of casino.parsed_response">
 
@@ -28,7 +28,7 @@
 
         <div text-center>
 
-          <button ion-button icon-only color="secondary" round small>
+          <button ion-button (click)="openModal()" icon-only color="secondary" round small>
             <ion-icon name="information-circle"  >
             </ion-icon>
           </button>
