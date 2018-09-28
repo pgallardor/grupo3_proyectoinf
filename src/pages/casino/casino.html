@@ -6,16 +6,21 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Casino</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Listado por Categorías</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <h1>Aki van los casinos :DD</h1>
+<ion-content>
+  <span>Necesito casinos que cuya oferta sea:</span>
+
+  <ion-list>
+    <button ion-item *ngFor="let cat of cats" (click)="goToCasinos(cat)" detail-push>
+      {{cat}}
+
+    </button>
+  </ion-list>
+
 </ion-content>
