@@ -9,8 +9,8 @@ import {CasinoPage } from "../casino/casino";
 
 export class TabsPage{
 
-  ofertas=BuscadorPage;
-  categorias=CasinoPage;
+  casinos=CasinoPage;
+  tipos=BuscadorPage;
   home=HomePage;
 
   constructor(){

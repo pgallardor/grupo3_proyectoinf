@@ -4,16 +4,25 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Buscador</ion-title>
+  <ion-navbar color="black">
+    <ion-title>Tipos de menú</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <h1>Aki va el buscador</h1>
+<ion-content>
+  <h1>Cantidad total de tipos de Menú: </h1>
+
+  <ion-list>
+    <button ion-item *ngFor="let cat of temp" (click)="goToCasinos(cat)" detail-push>
+      <ion-icon name="nutrition"></ion-icon> <!-- Considerar cambiarlo por una imagen diseñada para cada tipo de menu, por ejemplo, logo de junaeb, etc -->
+      {{cat.tipo+" "+"("+cat.count+")"}}
+
+    </button>
+  </ion-list>
 
 </ion-content>
