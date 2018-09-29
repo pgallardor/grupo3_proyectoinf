@@ -17,30 +17,26 @@
 
   <ion-item-group *ngFor="let c of casino.parsed_response">
 
-      <ion-item-divider color="dark">
+      <ion-item-divider color="dark" style="height: 50px">
       <ion-row center>  
-        <ion-col col-9 align-self-center>         
+        <ion-col col-12 align-self-center>
           <div text-center>
             <h1>{{c.tipo}}</h1> 
           </div>
-        </ion-col>  
-        <ion-col col-auto> 
-
-        <div text-center>
-
-          <button ion-button (click)="openModal(c.id_plato)" icon-only color="secondary" round small>
-            <ion-icon name="information-circle"  >
-            </ion-icon>
-          </button>
-          
-        </div>
-          
         </ion-col>
       </ion-row> 
       </ion-item-divider>
 
-      <ion-slides style="height: 75px" pager>
-            <ion-slide *ngFor="let m of c.menus"><h5>{{m.plato}}</h5></ion-slide>
+      <ion-slides style="height: 100px" pager="false">
+            <ion-slide *ngFor="let m of c.menus">
+              <h5>{{m.plato}}</h5>
+              <ion-item-divider >
+                <button ion-button (click)="openModal(m.id_plato)" icon-only color="secondary" round small >
+                  <ion-icon name="information-circle"  >
+                  </ion-icon>
+                </button>
+              </ion-item-divider>
+            </ion-slide>
   		</ion-slides>
 
   </ion-item-group>

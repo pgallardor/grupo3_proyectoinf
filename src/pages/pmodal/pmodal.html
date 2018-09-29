@@ -7,12 +7,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>pmodal</ion-title>
+
+    <ion-title *ngIf="detalle">{{nombreplato}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()" icon-only>
+        <ion-icon name="close">
+
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+  <ion-item-group *ngFor="let a of detalle">
+    <ion-item-divider color="secondary">
+      <ion-row center>
+        <ion-col col-9 >
+          <h5 align="left">{{a.tipo_agregado}}</h5>
+        </ion-col>
+        <ion-col col-auto align-self-center>
+          <h5><strong>{{a.precio}}</strong></h5>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+  </ion-item-group>
+  <ion-item>
+    <p>*Todo viene con pan y jugo</p>
+  </ion-item>
+
 
 </ion-content>
