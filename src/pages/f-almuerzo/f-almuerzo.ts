@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 
 /**
@@ -16,7 +16,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class FAlmuerzoPage {
 	casino: any = {};	
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public http: HttpClient,private modal: ModalController) {
 
 	this.http.get('http://localhost:3000/queries/opciones/1').subscribe(response => {
 	      console.log(response);
@@ -28,5 +28,15 @@ export class FAlmuerzoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad FAlmuerzoPage');
   }
+
+
+   openModal(myvar) {
+
+
+
+    const myModal = this.modal.create('PmodalPage', {data: myvar});
+
+    myModal.present();
+    };
 
 }
