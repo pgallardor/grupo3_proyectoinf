@@ -154,6 +154,37 @@ router.get('/nombre-plato/:plato', function (req,res){
     })
 })
 
+router.get('/nutricion-plato/:plato', function (req,res){
+  let info = [];
+  knex('plato as p').join('info_nutricional as i', 'p.id_informacion', 'i.id')
+    .select(['p.nombre','i.kcal','i.proteinas','i.carbohidratos', 'i.grasas', 'i.alergenos'])
+    .where('p.id', '=', req.params.plato)
+    .then(function (response) {
+      let parsed_response = [];
+      const idx = info.indexOf(response[0].kcal);
+      if (idx === -1){
+        parsed_response[0] = {};
+        parsed_response[0].tipo = 'Kcal';
+        parsed_response[0].value = response[0].kcal;
+        parsed_response[1] = {};
+        parsed_response[1].tipo = 'Proteinas';
+        parsed_response[1].value = response[0].proteinas;
+        parsed_response[2] = {};
+        parsed_response[2].tipo = 'Carbohidratos';
+        parsed_response[2].value = response[0].carbohidratos;
+        parsed_response[3] = {};
+        parsed_response[3].tipo = 'Grasas';
+        parsed_response[3].value = response[0].grasas;
+        parsed_response[4] = {};
+        parsed_response[4].tipo = 'Alérgenos';
+        parsed_response[4].value = response[0].alergenos;
+      }
+      res.json({parsed_response, nombre_plato : response[0].nombre});
+    })
+
+})
+
+
 router.get('/test1', function (req, res) {
   knex('plato').select().then(function (response) {
     res.json(response);

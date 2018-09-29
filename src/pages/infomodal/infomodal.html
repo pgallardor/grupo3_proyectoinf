@@ -1,0 +1,37 @@
+<!--
+  Generated template for the InfomodalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+   <ion-title *ngIf="info_nutricional">{{nombreplato}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal_nutricion()" icon-only>
+        <ion-icon name="close">
+
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+  <ion-item-group  *ngFor="let d of info_nutricional.parsed_response">
+    <ion-item-divider color="primary" >
+      <ion-row center>
+        <ion-col col-5 center><h5>{{d.tipo}}</h5></ion-col>
+        <ion-col col-auto align="right"><h5><strong>{{d.value}}</strong></h5></ion-col>
+      </ion-row>
+    </ion-item-divider>
+  </ion-item-group>
+  <ion-item>
+    <p>*Información en base al plato principal</p>
+  </ion-item>
+
+</ion-content>

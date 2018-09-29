@@ -21,7 +21,7 @@ export class PmodalPage {
   nombreplato: any = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private view: ViewController) {
     const id_plato_visto = this.navParams.get('data');
-    this.http.get('http://localhost:3000/queries/detalle/2/'+id_plato_visto).subscribe(response => {
+    this.http.get('http://localhost:3000/queries/detalle/1/'+id_plato_visto).subscribe(response => {
       console.log(response);
       this.detalle= response;
       this.nombreplato = response[0].nombre_plato;
@@ -37,7 +37,7 @@ export class PmodalPage {
 
   }
 
-  closeModal(){
+  closeModal_precio(){
     this.view.dismiss();
   }
 }
