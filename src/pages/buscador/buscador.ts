@@ -31,9 +31,9 @@ export class BuscadorPage{
     console.log('ionViewDidLoad BuscadorPage');
   }
 
-    getTipoMenu():void{
-
-
+    goToFAlmuerzoPage():void{
+      //this.navCtrl.push(FAlmuerzoPage,"porTipo");
+      console.log("Hola Sergio");
     }
   
 
