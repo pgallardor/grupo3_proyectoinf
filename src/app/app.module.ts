@@ -5,20 +5,22 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
+import {TabsPage} from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {BuscadorPage} from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
 import {HttpClientModule} from "@angular/common/http";
-
+import {SettingPage} from "../pages/setting/setting";
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
     BuscadorPage,
-    CasinoPage
+    CasinoPage,
+    SettingPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,9 @@ import {HttpClientModule} from "@angular/common/http";
     HomePage,
     ListPage,
     BuscadorPage,
-    CasinoPage
+    CasinoPage,
+    SettingPage,
+    TabsPage
   ],
   providers: [
     StatusBar,

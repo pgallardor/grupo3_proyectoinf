@@ -7,14 +7,14 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { BuscadorPage } from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
-
+import {TabsPage} from "../pages/tabs/tabs";
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = TabsPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,7 +25,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Buscador', component: BuscadorPage },
-      { title: 'Casinos', component: CasinoPage}
+      { title: 'Casinos', component: CasinoPage},
+      {title: 'tabs',component:TabsPage}
     ];
 
   }
