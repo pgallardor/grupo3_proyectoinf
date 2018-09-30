@@ -18,7 +18,7 @@ export class FAlmuerzoPage {
 	casino: any = {};	
   constructor(public navCtrl: NavController, public http: HttpClient,private modal: ModalController) {
 
-	this.http.get('http://localhost:3000/queries/opciones/1').subscribe(response => {
+	this.http.get('http://localhost:3000/queries/opciones/4').subscribe(response => {
 	      console.log(response);
 	      this.casino = response;
 	    })
@@ -30,14 +30,21 @@ export class FAlmuerzoPage {
   }
 
 
-   openModal_precio(plato) {
+   openModal_precio(plato, menu) {
 
-      const myModal = this.modal.create('PmodalPage', {data: plato  });
+     const datos = {
+       idplato : plato,
+       nombremenu : menu
+     };
+
+      const myModal = this.modal.create('PmodalPage', {data: datos  });
 
       myModal.present();
     };
 
   openModal_nutricion(plato) {
+
+
 
     const myModal = this.modal.create('InfomodalPage', {data: plato  });
 

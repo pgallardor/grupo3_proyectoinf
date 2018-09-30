@@ -52,17 +52,19 @@ router.get('/casinos/:id_tipo', function (req, res) {
     .join('menu as m', 'm.id', 'l.id_menu')
     .join('plato as p', 'p.id', 'l.id_plato')
     .distinct('p.nombre', 'c.nombre', 'm.tipo')
-    .select(['p.nombre as nombre_plato', 'm.tipo', 'c.nombre', 'l.fecha_publicacion', 'l.id_plato'])
+    .select(['p .nombre as nombre_plato', 'm.tipo', 'c.nombre', 'l.fecha_publicacion', 'l.id_plato','c.id as id_casino'])
     .where('m.id', '=', req.params.id_tipo)
     .orderBy('l.fecha_publicacion', 'asc')
     .then(function (response) {
       let parsed_response = [];
       for (let i = 0; i < response.length; i++){
         const idx = casinos.indexOf(response[i].nombre);
+        const idx2 = casinos.indexOf(response[i].id_casino);
         if (idx === -1){
           casinos.push(response[i].nombre);
           parsed_response[cnt] = {};
           parsed_response[cnt].nombre = response[i].nombre;
+          parsed_response[cnt].id_casino = response[i].id_casino;
           parsed_response[cnt].menus = [{
             id_plato: response[i].id_plato,
             plato: response[i].nombre_plato,
@@ -108,7 +110,7 @@ router.get('/num-tipos', function (req, res) {
     })
 })
 
-router.get('/detalle/:casino/:plato', function (req, res) {
+router.get('/detalle/:casino/:plato/:menu', function (req, res) {
   knex('lleva as l').join('plato as p', 'p.id', 'l.id_plato')
     .join('agregado as a', 'a.id', 'l.id_agregado')
     .join('casino as c', 'c.id', 'l.id_casino')
@@ -116,7 +118,8 @@ router.get('/detalle/:casino/:plato', function (req, res) {
     .orderBy(['c.nombre', 'p.nombre', 'l.precio'], 'asc')
     .where({
       id_casino: req.params.casino,
-      id_plato: req.params.plato
+      id_plato: req.params.plato,
+      tipo: req.params.menu,
     })
     .select(['p.nombre as nombre_plato', 'c.nombre as nombre_casino', 'a.tipo_agregado', 'm.tipo', 'l.precio'])
     .then(function (response) {

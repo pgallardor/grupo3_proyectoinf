@@ -12,6 +12,7 @@ import {BuscadorPage} from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
 import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
 import {HttpClientModule, HttpClient} from "@angular/common/http";
+import {AlmuerzoPorTipoPage} from "../pages/almuerzo-por-tipo/almuerzo-por-tipo";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {HttpClientModule, HttpClient} from "@angular/common/http";
     ListPage,
     BuscadorPage,
     CasinoPage,
-    FAlmuerzoPage
+    FAlmuerzoPage,
+    AlmuerzoPorTipoPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import {HttpClientModule, HttpClient} from "@angular/common/http";
     ListPage,
     BuscadorPage,
     CasinoPage,
-    FAlmuerzoPage
+    FAlmuerzoPage,
+    AlmuerzoPorTipoPage
   ],
   providers: [
     StatusBar,

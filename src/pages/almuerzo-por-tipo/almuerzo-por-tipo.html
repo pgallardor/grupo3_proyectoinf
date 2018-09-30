@@ -1,0 +1,63 @@
+<!--
+  Generated template for the AlmuerzoPorTipoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="tipo">{{tipo.menu}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content *ngIf="tipo">
+
+  <ion-item-group *ngFor="let o of tipo.parsed_response">
+
+    <ion-item-divider color="dark" style="height: 50px">
+      <ion-row center>
+        <ion-col col-12 align-self-center>
+          <div text-center>
+            <h1>{{o.nombre}}</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item-divider>
+
+    <ion-slides style="height: 100px; background-color: white" pager="false" >
+      <ion-slide *ngFor="let m of o.menus" >
+        <h5>{{m.plato}}</h5>
+        <ion-item-divider style="background-color: inherit">
+          <ion-row center>
+            <ion-col col-3>
+            </ion-col>
+            <ion-col col-3>
+              <button ion-button (click)="openModal_precio(m.id_plato, tipo.menu)" icon-only color="secondary" round small >
+                <ion-icon name="information-circle"  >
+                </ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-3>
+              <button ion-button (click)="openModal_nutricion(m.id_plato)" icon-only color="primary" round small >
+                <ion-icon name="information-circle" >
+                </ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-3>
+
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+      </ion-slide>
+    </ion-slides>
+
+  </ion-item-group>
+
+
+
+
+
+</ion-content>
