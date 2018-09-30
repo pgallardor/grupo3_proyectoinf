@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
+import {FAlmuerzoPage} from "../f-almuerzo/f-almuerzo";
 /**
  * Generated class for the CasinoPage page.
  *
@@ -22,6 +23,8 @@ export class CasinoPage {
       this.casinos = response;
     })
   }
-
+OtraPagina(){
+this.navCtrl.push(FAlmuerzoPage);
+}
 
 }

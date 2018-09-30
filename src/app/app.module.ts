@@ -12,6 +12,7 @@ import {BuscadorPage} from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
 import {HttpClientModule} from "@angular/common/http";
 import {SettingPage} from "../pages/setting/setting";
+import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
 @NgModule({
   declarations: [
     MyApp,
@@ -20,7 +21,8 @@ import {SettingPage} from "../pages/setting/setting";
     BuscadorPage,
     CasinoPage,
     SettingPage,
-    TabsPage
+    TabsPage,
+    FAlmuerzoPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {SettingPage} from "../pages/setting/setting";
     BuscadorPage,
     CasinoPage,
     SettingPage,
-    TabsPage
+    TabsPage,
+    FAlmuerzoPage
   ],
   providers: [
     StatusBar,

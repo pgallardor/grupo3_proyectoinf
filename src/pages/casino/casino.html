@@ -17,7 +17,7 @@
  
 <ion-card >
   <ion-list>
-<button ion-item *ngFor="let item of casinos">
+<button ion-item *ngFor="let item of casinos" (click)="OtraPagina(item.id)" >
   <ion-icon name="cafe" item-start></ion-icon>
 {{item.nombre}}
 </button>

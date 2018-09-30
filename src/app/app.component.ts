@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { BuscadorPage } from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
 import {TabsPage} from "../pages/tabs/tabs";
+import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
 @Component({
   templateUrl: 'app.html'
 })
