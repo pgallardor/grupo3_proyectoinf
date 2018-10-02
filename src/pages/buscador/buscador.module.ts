@@ -11,3 +11,5 @@ import { BuscadorPage } from './buscador';
   ],
 })
 export class BuscadorPageModule {}
+
+  //como salgo de aquí?
