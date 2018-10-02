@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-//import { ListPage } from '../pages/list/list';
+import { ListPage } from '../pages/list/list';
 import { BuscadorPage } from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
 import {TabsPage} from "../pages/tabs/tabs";

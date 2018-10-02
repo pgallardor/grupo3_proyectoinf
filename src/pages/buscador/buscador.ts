@@ -31,9 +31,13 @@ export class BuscadorPage{
     console.log('ionViewDidLoad BuscadorPage');
   }
 
-    goToFAlmuerzoPage():void{
-      //this.navCtrl.push(FAlmuerzoPage,"porTipo");
-      console.log("Hola Sergio");
+    goToAlmuerzoPorTipo(porTipo):void{
+      /*
+       DESCOMENTAR ESTO
+      this.navCtrl.push(AlmuerzoPorTipoPage,"porTipo.id");
+      */
+
+      console.log("Tipo:"+porTipo.id);
     }
   
 

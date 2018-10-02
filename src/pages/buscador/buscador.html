@@ -18,7 +18,7 @@
   <h1>Cantidad total de tipos de Menú: </h1>
 
   <ion-list>
-    <button ion-item *ngFor="let cat of temp" (click)="goToFAlmuerzoPage()" detail-push>
+    <button ion-item *ngFor="let cat of temp" (click)="goToAlmuerzoPorTipo(cat)" detail-push>
       <ion-icon name="nutrition"></ion-icon> <!-- Considerar cambiarlo por una imagen diseñada para cada tipo de menu, por ejemplo, logo de junaeb, etc -->
       {{cat.tipo+" "+"("+cat.count+")"}}
 
