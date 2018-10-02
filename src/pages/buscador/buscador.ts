@@ -30,14 +30,20 @@ export class BuscadorPage{
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuscadorPage');
+
   }
 
-    goToAlmuerzoPorTipo(porTipo):void{
+    goToAlmuerzoPorTipo(nombreTipo, idtipo){
 
-      this.navCtrl.push(AlmuerzoPorTipoPage,"porTipo.tipo");
+      const datos = {
+        tipomenu : nombreTipo,
+        idmenu : idtipo
+      };
+
+      this.navCtrl.push(AlmuerzoPorTipoPage,{data : datos});
 
 
-      console.log("Tipo: "+porTipo.tipo);
+      console.log("Tipo: "+datos.tipomenu+ ", id:"+ datos.idmenu);
     }
   
 

@@ -14,12 +14,13 @@
 
 
 <ion-content padding>
- 
+
 <ion-card >
   <ion-list>
 <button ion-item *ngFor="let item of casinos" (click)="OtraPagina(item.id)" >
+  
   <ion-icon name="cafe" item-start></ion-icon> <ion-icon name="arrow-dropright" item-end></ion-icon>
-{{item.nombre}} ({{item.count}}) 
+{{item.nombre}} ({{item.count}})
 </button>
 </ion-list>
 </ion-card>

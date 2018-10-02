@@ -17,8 +17,15 @@ import { HttpClient} from "@angular/common/http";
 })
 export class AlmuerzoPorTipoPage {
   tipo : any = {};
+  nombre_menu : any ;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public modal:ModalController ) {
-    this.http.get('http://localhost:3000/queries/casinos/2').subscribe(response =>{
+    const datos =this.navParams.get('data');
+    this.nombre_menu = datos.tipomenu;
+    console.log(this.nombre_menu);
+    const id_menu = datos.idmenu;
+    console.log(id_menu);
+    console.log(datos);
+    this.http.get('http://localhost:3000/queries/casinos/'+id_menu).subscribe(response =>{
       this.tipo = response;
       console.log(this.tipo);
     })
@@ -27,13 +34,17 @@ export class AlmuerzoPorTipoPage {
   ionViewWillLoad() {
     console.log('ionViewDidLoad AlmuerzoPorTipoPage');
     console.log('llegue');
+    const menu =this.navParams.get('data');
+    console.log('Pase el menu del tipo');
+    console.log(menu);
   }
 
-  openModal_precio(plato, menu) {
+  openModal_precio(plato, menu, casino) {
 
     const datos = {
       idplato : plato,
-      nombremenu : menu
+      nombremenu : menu,
+      idcasino : casino
     };
 
     const myModal = this.modal.create('PmodalPage', {data: datos });
