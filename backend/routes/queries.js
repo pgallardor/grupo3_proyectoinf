@@ -60,26 +60,26 @@ router.get('/casinos/:id_tipo', function (req, res) {
 })
 
 router.get('/num-menus/', function (req, res) {
-  knex.raw('select casino.nombre, count (distinct lleva.id_plato) ' +
+  knex.raw('select casino.id, casino.nombre, count (distinct lleva.id_plato) ' +
     'from menu, casino, ofrece, lleva ' +
     'where ofrece.id_menu = menu.id and ' +
     'casino.id = ofrece.id_casino and ' +
     'lleva.id_menu = ofrece.id_menu and ' +
     'lleva.id_casino = casino.id ' +
-    'group by (casino.nombre)')
+    'group by (casino.id, casino.nombre)')
     .then(function (response) {
       res.json(response.rows);
     })
 })
 
 router.get('/num-tipos', function (req, res) {
-  knex.raw('select menu.tipo, count (distinct lleva.id_plato) ' +
+  knex.raw('select menu.id, menu.tipo, count (distinct lleva.id_plato) ' +
     'from menu, casino, ofrece, lleva ' +
     'where ofrece.id_menu = menu.id and ' +
     'casino.id = ofrece.id_casino and ' +
     'lleva.id_menu = ofrece.id_menu and ' +
     'lleva.id_casino = casino.id ' +
-    'group by (menu.tipo)')
+    'group by (menu.id, menu.tipo)')
     .then(function (response) {
       res.json(response.rows);
     })
@@ -130,6 +130,7 @@ router.get('/nombre-plato/:plato', function (req,res){
       res.json(response);
     })
 })
+
 
 router.get('/test1', function (req, res) {
   knex('plato').select().then(function (response) {
