@@ -7,17 +7,16 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { BuscadorPage } from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
+import {TabsPage} from "../pages/tabs/tabs";
 import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
 import {AlmuerzoPorTipoPage} from "../pages/almuerzo-por-tipo/almuerzo-por-tipo";
-
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = TabsPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -29,8 +28,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Buscador', component: BuscadorPage },
       { title: 'Casinos', component: CasinoPage},
-      { title: 'Almuerzo por casino', component: FAlmuerzoPage},
-      { title: 'Almuerzo por tipo', component: AlmuerzoPorTipoPage}
+      {title: 'tabs',component:TabsPage}
     ];
 
   }
