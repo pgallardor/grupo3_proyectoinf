@@ -121,10 +121,7 @@ router.get('/detalle/:casino/:menu/:plato', function (req, res) {
     .where({
       id_casino: req.params.casino,
       id_plato: req.params.plato,
-
-      tipo: req.params.menu,
-
-
+      tipo: req.params.menu
     })
     .select(['p.nombre as nombre_plato', 'c.nombre as nombre_casino', 'a.tipo_agregado', 'm.tipo', 'l.precio'])
     .then(function (response) {
