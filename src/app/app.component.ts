@@ -9,6 +9,7 @@ import { BuscadorPage } from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
 import {TabsPage} from "../pages/tabs/tabs";
 import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
+import {AlmuerzoPorTipoPage} from "../pages/almuerzo-por-tipo/almuerzo-por-tipo";
 @Component({
   templateUrl: 'app.html'
 })

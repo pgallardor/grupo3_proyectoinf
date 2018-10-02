@@ -16,9 +16,11 @@ import { HttpClient } from "@angular/common/http";
 })
 export class FAlmuerzoPage {
 	casino: any = {};	
-  constructor(public navCtrl: NavController, public http: HttpClient,private modal: ModalController) {
-
-	this.http.get('http://localhost:3000/queries/opciones/1').subscribe(response => {
+       
+  constructor(public navCtrl: NavController, public http: HttpClient,private modal: ModalController, public navParams: NavParams) {
+         const myid=this.navParams.get('data');
+	console.log(myid);
+	this.http.get('http://localhost:3000/queries/opciones/' + myid).subscribe(response => {
 	      console.log(response);
 	      this.casino = response;
 	    })
@@ -30,13 +32,17 @@ export class FAlmuerzoPage {
   }
 
 
-   openModal(myvar) {
+   openModal_precio(plato) {
 
+      const myModal = this.modal.create('PmodalPage', {data: plato  });
 
-
-    const myModal = this.modal.create('PmodalPage', {data: myvar});
-
-    myModal.present();
+      myModal.present();
     };
 
+  openModal_nutricion(plato) {
+
+    const myModal = this.modal.create('InfomodalPage', {data: plato  });
+
+    myModal.present();
+  };
 }

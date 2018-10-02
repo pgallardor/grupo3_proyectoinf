@@ -17,14 +17,16 @@ import {FAlmuerzoPage} from "../f-almuerzo/f-almuerzo";
 export class CasinoPage {
 
    casinos: any;
+   
   constructor(public navCtrl: NavController, public http: HttpClient) {
-    this.http.get('http://localhost:3000/jonadb').subscribe(response => {
+    this.http.get('http://localhost:3000/queries/num-menus').subscribe(response => {
       console.log(response);
       this.casinos = response;
     })
   }
-OtraPagina(){
-this.navCtrl.push(FAlmuerzoPage);
+OtraPagina(id){
+console.log(id);
+this.navCtrl.push(FAlmuerzoPage, {data: id});
 }
 
 }
