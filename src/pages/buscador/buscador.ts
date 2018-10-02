@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {HttpClient} from "@angular/common/http";
+import {AlmuerzoPorTipoPage} from "../almuerzo-por-tipo/almuerzo-por-tipo";
 //import {DataProvider} from '../../providers/data/data';
 /**
  * Generated class for the CasinoPage page.
@@ -32,10 +33,9 @@ export class BuscadorPage{
   }
 
     goToAlmuerzoPorTipo(porTipo):void{
-      /*
-       DESCOMENTAR ESTO
+
       this.navCtrl.push(AlmuerzoPorTipoPage,"porTipo.tipo");
-      */
+
 
       console.log("Tipo: "+porTipo.tipo);
     }

@@ -10,8 +10,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {BuscadorPage} from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
-import {HttpClientModule} from "@angular/common/http";
 import {TabsPage} from "../pages/tabs/tabs";
+
+import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
+import {HttpClientModule, HttpClient} from "@angular/common/http";
+import {AlmuerzoPorTipoPage} from "../pages/almuerzo-por-tipo/almuerzo-por-tipo";
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import {TabsPage} from "../pages/tabs/tabs";
     ListPage,
     BuscadorPage,
     CasinoPage,
-    TabsPage
+    TabsPage,
+    FAlmuerzoPage,
+    AlmuerzoPorTipoPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,9 @@ import {TabsPage} from "../pages/tabs/tabs";
     ListPage,
     BuscadorPage,
     CasinoPage,
-    TabsPage
+    TabsPage,
+    FAlmuerzoPage,
+    AlmuerzoPorTipoPage
   ],
 
   providers: [

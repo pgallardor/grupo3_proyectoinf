@@ -45,17 +45,42 @@ router.get('/opciones/:casino/', function (req, res) {
 });
 
 router.get('/casinos/:id_tipo', function (req, res) {
+  let casinos = [], cnt = 0;
   knex('lleva as l')
     .join('agregado as a', 'a.id', 'l.id_agregado')
     .join('casino as c', 'c.id', 'l.id_casino')
     .join('menu as m', 'm.id', 'l.id_menu')
     .join('plato as p', 'p.id', 'l.id_plato')
     .distinct('p.nombre', 'c.nombre', 'm.tipo')
-    .select(['p.nombre as nombre_plato', 'm.tipo', 'c.nombre', 'l.fecha_publicacion'])
+    .select(['p .nombre as nombre_plato', 'm.tipo', 'c.nombre', 'l.fecha_publicacion', 'l.id_plato','c.id as id_casino'])
     .where('m.id', '=', req.params.id_tipo)
     .orderBy('l.fecha_publicacion', 'asc')
     .then(function (response) {
-      res.json(response);
+      let parsed_response = [];
+      for (let i = 0; i < response.length; i++){
+        const idx = casinos.indexOf(response[i].nombre);
+        const idx2 = casinos.indexOf(response[i].id_casino);
+        if (idx === -1){
+          casinos.push(response[i].nombre);
+          parsed_response[cnt] = {};
+          parsed_response[cnt].nombre = response[i].nombre;
+          parsed_response[cnt].id_casino = response[i].id_casino;
+          parsed_response[cnt].menus = [{
+            id_plato: response[i].id_plato,
+            plato: response[i].nombre_plato,
+            fecha: response[i].fecha_publicacion
+          }];
+          cnt++;
+        }
+        else{
+          parsed_response[idx].menus.push({
+            id_plato: response[i].id_plato,
+            plato: response[i].nombre_plato,
+            fecha: response[i].fecha_publicacion
+          });
+        }
+      }
+      res.json({parsed_response, menu: response[0].tipo});
     })
 })
 
@@ -85,7 +110,7 @@ router.get('/num-tipos', function (req, res) {
     })
 })
 
-router.get('/detalle/:casino/:plato', function (req, res) {
+router.get('/detalle/:casino/:plato/:menu', function (req, res) {
   knex('lleva as l').join('plato as p', 'p.id', 'l.id_plato')
     .join('agregado as a', 'a.id', 'l.id_agregado')
     .join('casino as c', 'c.id', 'l.id_casino')
@@ -93,7 +118,8 @@ router.get('/detalle/:casino/:plato', function (req, res) {
     .orderBy(['c.nombre', 'p.nombre', 'l.precio'], 'asc')
     .where({
       id_casino: req.params.casino,
-      id_plato: req.params.plato
+      id_plato: req.params.plato,
+      tipo: req.params.menu,
     })
     .select(['p.nombre as nombre_plato', 'c.nombre as nombre_casino', 'a.tipo_agregado', 'm.tipo', 'l.precio'])
     .then(function (response) {
@@ -129,6 +155,37 @@ router.get('/nombre-plato/:plato', function (req,res){
     .then(function (response) {
       res.json(response);
     })
+})
+
+
+router.get('/nutricion-plato/:plato', function (req,res){
+  let info = [];
+  knex('plato as p').join('info_nutricional as i', 'p.id_informacion', 'i.id')
+    .select(['p.nombre','i.kcal','i.proteinas','i.carbohidratos', 'i.grasas', 'i.alergenos'])
+    .where('p.id', '=', req.params.plato)
+    .then(function (response) {
+      let parsed_response = [];
+      const idx = info.indexOf(response[0].kcal);
+      if (idx === -1){
+        parsed_response[0] = {};
+        parsed_response[0].tipo = 'Kcal';
+        parsed_response[0].value = response[0].kcal;
+        parsed_response[1] = {};
+        parsed_response[1].tipo = 'Proteinas';
+        parsed_response[1].value = response[0].proteinas;
+        parsed_response[2] = {};
+        parsed_response[2].tipo = 'Carbohidratos';
+        parsed_response[2].value = response[0].carbohidratos;
+        parsed_response[3] = {};
+        parsed_response[3].tipo = 'Grasas';
+        parsed_response[3].value = response[0].grasas;
+        parsed_response[4] = {};
+        parsed_response[4].tipo = 'Alérgenos';
+        parsed_response[4].value = response[0].alergenos;
+      }
+      res.json({parsed_response, nombre_plato : response[0].nombre});
+    })
+
 })
 
 

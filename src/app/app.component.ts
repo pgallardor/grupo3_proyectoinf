@@ -7,7 +7,11 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { BuscadorPage } from "../pages/buscador/buscador";
 import {CasinoPage} from "../pages/casino/casino";
+
 import {TabsPage} from "../pages/tabs/tabs";
+import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
+import {AlmuerzoPorTipoPage} from "../pages/almuerzo-por-tipo/almuerzo-por-tipo";
+
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +30,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Buscador', component: BuscadorPage },
-      { title: 'Casinos', component: CasinoPage}
+      { title: 'Casinos', component: CasinoPage},
+      { title: 'Almuerzo por casino', component: FAlmuerzoPage},
+      { title: 'Almuerzo por tipo', component: AlmuerzoPorTipoPage}
     ];
 
   }
