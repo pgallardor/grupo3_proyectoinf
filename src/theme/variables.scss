@@ -12,7 +12,7 @@ $font-path: "../assets/fonts";
 $app-direction: ltr;
 
 
-@import "ionic.globals";
+@import "../../node_modules/ionic-angular/themes/ionic.globals";
 
 
 // Shared Variables
@@ -73,7 +73,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "../../node_modules/ionic-angular/themes/ionic.theme.default";
 
 
 // Ionicons
@@ -81,11 +81,11 @@ $colors: (
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/ionicons/
 
-@import "ionic.ionicons";
+@import "../../node_modules/ionic-angular/themes/ionic.ionicons";
 
 
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+@import "../../www/assets/fonts/roboto";
+@import "../../www/assets/fonts/noto-sans";

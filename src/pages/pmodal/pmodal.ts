@@ -24,11 +24,14 @@ export class PmodalPage {
     const datos = this.navParams.get('data');
     const id_plato_visto = datos.idplato;
     const menu = datos.nombremenu;
+    const casino = datos.idcasino;
     console.log('esta si');
     console.log(id_plato_visto);
     console.log(menu);
-    console.log(datos)
-    this.http.get('http://localhost:3000/queries/detalle/4/'+menu+'/'+id_plato_visto).subscribe(response => {
+    console.log(casino);
+    console.log('todo');
+    console.log(datos);
+    this.http.get('http://localhost:3000/queries/detalle/'+casino+'/'+menu+'/'+id_plato_visto).subscribe(response => {
       console.log(response);
       this.detalle= response;
       this.nombreplato = response[0].nombre_plato;
