@@ -34,10 +34,10 @@ export class BuscadorPage{
     goToAlmuerzoPorTipo(porTipo):void{
       /*
        DESCOMENTAR ESTO
-      this.navCtrl.push(AlmuerzoPorTipoPage,"porTipo.id");
+      this.navCtrl.push(AlmuerzoPorTipoPage,"porTipo.tipo");
       */
 
-      console.log("Tipo:"+porTipo.id);
+      console.log("Tipo: "+porTipo.tipo);
     }
   
 
