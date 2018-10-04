@@ -19,7 +19,7 @@ export class InfomodalPage {
   nombreplato: any = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private view: ViewController) {
     const id_plato_visto = this.navParams.get('data');
-    this.http.get('http://localhost:3000/queries/nutricion-plato/'+id_plato_visto).subscribe(response => {
+    this.http.get('https://casinos-backend.herokuapp.com/queries/nutricion-plato/'+id_plato_visto).subscribe(response => {
       this.info_nutricional = response;
       console.log(this.info_nutricional);
       console.log("plato")

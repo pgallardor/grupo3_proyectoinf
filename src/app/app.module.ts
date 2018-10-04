@@ -14,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {SettingPage} from "../pages/setting/setting";
 import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
 import {AlmuerzoPorTipoPage} from "../pages/almuerzo-por-tipo/almuerzo-por-tipo";
+
 @NgModule({
   declarations: [
     MyApp,
