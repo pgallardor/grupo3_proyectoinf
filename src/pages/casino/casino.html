@@ -15,13 +15,13 @@
 
 <ion-content padding>
 
-<ion-card >
+
   <ion-list>
-<button ion-item *ngFor="let item of casinos" (click)="OtraPagina(item.id)" >
+<button ion-item *ngFor="let item of casinos" (click)="OtraPagina(item.id)">
   
-  <ion-icon name="cafe" item-start></ion-icon> <ion-icon name="arrow-dropright" item-end></ion-icon>
-{{item.nombre}} ({{item.count}})
+  <ion-icon name="cafe" item-start></ion-icon>{{item.nombre}} ({{item.count}}) <ion-icon name="arrow-dropright" item-end></ion-icon>
+
 </button>
 </ion-list>
-</ion-card>
+
 </ion-content>
