@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
+import { LoadingController } from "ionic-angular";
 
 /**
  * Generated class for the FAlmuerzoPage page.
@@ -15,12 +16,18 @@ import { HttpClient } from "@angular/common/http";
   templateUrl: 'f-almuerzo.html',
 })
 export class FAlmuerzoPage {
-	casino: any = {};	
-  constructor(public navCtrl: NavController, public http: HttpClient,private modal: ModalController) {
-
-	this.http.get('http://localhost:3000/queries/opciones/1').subscribe(response => {
+	casino: any = {};
+	id_casino: any = 0;
+  constructor(public navCtrl: NavController, public http: HttpClient,private modal: ModalController,
+              public navParams: NavParams, public load: LoadingController) {
+    let loading = this.load.create({content: 'Espere un momento'});
+    loading.present();
+    this.id_casino =this.navParams.get('data');
+	  console.log(this.id_casino);
+  	this.http.get('https://casinos-backend.herokuapp.com/queries/opciones/' + this.id_casino).subscribe(response => {
 	      console.log(response);
 	      this.casino = response;
+	      loading.dismiss();
 	    })
 
   }
@@ -30,13 +37,23 @@ export class FAlmuerzoPage {
   }
 
 
-   openModal(myvar) {
+   openModal_precio(plato, menu, casino) {
 
+     const datos = {
+       idplato : plato,
+       nombremenu : menu,
+       idcasino : casino
+     };
 
+      const myModal = this.modal.create('PmodalPage', {data: datos  });
 
-    const myModal = this.modal.create('PmodalPage', {data: myvar});
-
-    myModal.present();
+      myModal.present();
     };
 
+  openModal_nutricion(plato) {
+
+    const myModal = this.modal.create('InfomodalPage', {data: plato  });
+
+    myModal.present();
+  };
 }

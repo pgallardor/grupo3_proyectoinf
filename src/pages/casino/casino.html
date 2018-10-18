@@ -6,10 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  <ion-navbar color="myapp3">
     <ion-title>Casino</ion-title>
   </ion-navbar>
 
@@ -17,5 +14,14 @@
 
 
 <ion-content padding>
-  <h1>Aki van los casinos :DD</h1>
+
+
+  <ion-list>
+<button ion-item *ngFor="let item of casinos" (click)="OtraPagina(item.id)">
+  
+  <ion-icon name="cafe" item-start></ion-icon>{{item.nombre}} ({{item.count}}) <ion-icon name="arrow-dropright" item-end></ion-icon>
+
+</button>
+</ion-list>
+
 </ion-content>
