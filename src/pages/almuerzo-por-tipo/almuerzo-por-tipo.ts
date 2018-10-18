@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { HttpClient} from "@angular/common/http";
-
+import { LoadingController } from "ionic-angular";
 
 /**
  * Generated class for the AlmuerzoPorTipoPage page.
@@ -18,16 +18,20 @@ import { HttpClient} from "@angular/common/http";
 export class AlmuerzoPorTipoPage {
   tipo : any = {};
   nombre_menu : any ;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public modal:ModalController ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,
+              public modal:ModalController, public loading: LoadingController) {
+    let load = this.loading.create({content: 'Espere un momento'});
+    load.present();
     const datos =this.navParams.get('data');
     this.nombre_menu = datos.tipomenu;
     console.log(this.nombre_menu);
     const id_menu = datos.idmenu;
     console.log(id_menu);
     console.log(datos);
-    this.http.get('http://localhost:3000/queries/casinos/'+id_menu).subscribe(response =>{
+    this.http.get('https://casinos-backend.herokuapp.com/queries/casinos/'+id_menu).subscribe(response =>{
       this.tipo = response;
       console.log(this.tipo);
+      load.dismiss();
     })
   }
 

@@ -31,7 +31,7 @@ export class PmodalPage {
     console.log(casino);
     console.log('todo');
     console.log(datos);
-    this.http.get('http://localhost:3000/queries/detalle/'+casino+'/'+menu+'/'+id_plato_visto).subscribe(response => {
+    this.http.get('https://casinos-backend.herokuapp.com/queries/detalle/'+casino+'/'+menu+'/'+id_plato_visto).subscribe(response => {
       console.log(response);
       this.detalle= response;
       this.nombreplato = response[0].nombre_plato;
