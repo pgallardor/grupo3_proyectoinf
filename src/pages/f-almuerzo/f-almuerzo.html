@@ -12,13 +12,12 @@
 
 </ion-header>
 
-
 <ion-content *ngIf="casino">
 
-  <ion-item-group *ngFor="let c of casino.parsed_response">
+  <ion-item-group *ngFor="let c of casino.parsed_response; let i = index">
 
       <ion-item-divider color="dark" style="height: 50px; padding-left:0px">
-      <ion-row center> 
+      <ion-row centers> 
         <ion-col col-2>
         </ion-col>
         <ion-col col-8 align-self-center>
@@ -27,7 +26,7 @@
           </div>
         </ion-col>
         <ion-col col-2>
-          <button ion-button (click)="openModal_precio(m.id_plato, c.tipo,id_casino)" icon-only color="secondary" block small >
+          <button ion-button (click)="openModal_precio(i)" icon-only color="secondary" block small >
             <ion-icon name="information-circle"  >
             </ion-icon>
           </button>
@@ -35,7 +34,7 @@
       </ion-row> 
       </ion-item-divider>
 
-      <ion-slides style="height: 100px; background-color: white" pager="true" >
+      <ion-slides (ionSlideDidChange)="slideChanged()" style="height: 100px; background-color: white" pager="true" >
             <ion-slide *ngFor="let m of c.menus" >
               <h5>{{m.plato}}</h5>
             </ion-slide>
