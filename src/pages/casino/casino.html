@@ -14,14 +14,30 @@
 
 
 <ion-content padding>
+<ion-list>
+    <ion-item-sliding *ngFor="let item of casinos">
+      <ion-item>
+        <ion-card>
+            <ion-img src="../assets/img/Plato.jpg" (click)="OtraPagina(item.id)"></ion-img>
+            <ion-fab right top>
+                <button ion-fab (click)="Mapita()" z-index="10" only-icon>
+                <ion-icon name="pin"></ion-icon>
+              </button>
+              </ion-fab>
+		 <div class="card-title">{{item.nombre}}  ({{item.count}})</div>
+              
+         </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
 
 
-  <ion-list>
+  <!--<ion-list> 
 <button ion-item *ngFor="let item of casinos" (click)="OtraPagina(item.id)">
   
   <ion-icon name="cafe" item-start></ion-icon>{{item.nombre}} ({{item.count}}) <ion-icon name="arrow-dropright" item-end></ion-icon>
 
 </button>
-</ion-list>
+</ion-list>-->
 
 </ion-content>
