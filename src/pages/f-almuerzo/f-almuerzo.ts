@@ -1,4 +1,4 @@
-import { Component , ViewChildren, ViewChild } from '@angular/core';
+import { Component , ViewChildren, ViewChild, QueryList } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController, Slides } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { LoadingController } from "ionic-angular";
@@ -41,17 +41,23 @@ export class FAlmuerzoPage {
 
 
    openModal_precio(i: int) {
-      let cosa = this.slides.toArray(), j = cosa[i].getActiveIndex(); 
+      console.log("i: " + i);
+      let cosa = this.slides.toArray(), j = cosa[i].realIndex; 
+      console.log("j: " + j);
 
-      const datos = {
+      var datos = {
        idplato : this.casino.parsed_response[i].menus[j].id_plato,
-       nombremenu : this.casino.parsed_response[i].menus[j].plato,
+       nombremenu : this.casino.parsed_response[i].tipo,
        idcasino : this.id_casino
      };
 
+     datos.idplato = this.casino.parsed_response[i].menus[j].id_plato;
+     datos.nombremenu = this.casino.parsed_response[i].tipo;
+     datos.idcasino = this.id_casino
+
       console.log("Hola \n");
       console.log("id_plato: " + datos.idplato);
-      console.log("menu: " + datos.nombremenu);
+      console.log("nombremenu: " + datos.nombremenu);
       console.log("idcasino: " + datos.idcasino);
 
 
