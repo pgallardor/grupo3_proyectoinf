@@ -40,7 +40,7 @@ export class FAlmuerzoPage {
   }
 
 
-   openModal_precio(i: int) {
+   openModal_precio(i) {
       console.log("i: " + i);
       let cosa = this.slides.toArray(), j = cosa[i].realIndex; 
       console.log("j: " + j);
@@ -50,10 +50,6 @@ export class FAlmuerzoPage {
        nombremenu : this.casino.parsed_response[i].tipo,
        idcasino : this.id_casino
      };
-
-     datos.idplato = this.casino.parsed_response[i].menus[j].id_plato;
-     datos.nombremenu = this.casino.parsed_response[i].tipo;
-     datos.idcasino = this.id_casino
 
       console.log("Hola \n");
       console.log("id_plato: " + datos.idplato);
@@ -67,15 +63,4 @@ export class FAlmuerzoPage {
 
     };
 
-
-    slideChanged() {
-
-    };
-
-  openModal_nutricion(plato) {
-
-    const myModal = this.modal.create('InfomodalPage', {data: plato  });
-
-    myModal.present();
-  };
 }
