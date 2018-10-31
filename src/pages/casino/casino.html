@@ -6,19 +6,20 @@
 -->
 <ion-header>
 
-  <ion-navbar color="myapp3">
-    <ion-title>Casino</ion-title>
+  <ion-navbar color="myapp3" style="text-align: center">
+    <ion-title>Mis Casinos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="card-background-page">
 <ion-list>
-    <ion-item-sliding *ngFor="let item of casinos">
+    <ion-item-sliding *ngFor="let item of casinos" style="width=300px">
       <ion-item>
-        <ion-card>
-            <ion-img src="../assets/img/Plato.jpg" (click)="OtraPagina(item.id)"></ion-img>
+        <ion-card >
+        
+    <img [src]="'../assets/img/' + item.id + '.jpg'" (click)="OtraPagina(item.id)">
             <ion-fab right top>
                 <button ion-fab (click)="Mapita()" z-index="10" only-icon>
                 <ion-icon name="pin"></ion-icon>

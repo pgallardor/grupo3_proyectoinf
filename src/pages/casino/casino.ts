@@ -12,7 +12,7 @@ import {MapsPage} from "../maps/maps";
   templateUrl: 'casino.html',
 })
 export class CasinoPage {
-
+   
    casinos: any;
    images=["../assets/img/Plato.jpg"];
   constructor(public navCtrl: NavController, public http: HttpClient, public load: LoadingController) {
