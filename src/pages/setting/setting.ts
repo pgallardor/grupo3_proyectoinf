@@ -20,8 +20,8 @@ export class SettingPage {
   datos : any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController) {
     this.datos = {
-      Comentario: this.Comenta,
-      Correo: this.Correo
+      comentario: '',
+      correo: ''
     };
 
   }
@@ -31,11 +31,10 @@ export class SettingPage {
   }
 
   comentario_enviado(){
-    console.log(this.Comenta);
-    console.log(this.Correo);
+    console.log(this.datos);
     this.state = 0;
     try {
-      if (this.Correo.search("@") > 0) {
+      if (this.datos.correo.search("@") > 0) {
         console.log("Correo correcto");
       }
       else {
@@ -49,7 +48,7 @@ export class SettingPage {
       this.alerta_correo();
       this.state = 1;
     }
-    if(isUndefined(this.Comenta)){
+    if(isUndefined(this.datos.comentario) || this.datos.comentario === ''){
       this.alerta_comentario()
       this.state = 1;
     }
@@ -97,8 +96,10 @@ export class SettingPage {
   }
 
   limpiar_comentario(){
-    this.Comenta = "";
-    this.Correo = "";
+    this.datos = {
+      comentario: '',
+      correo: ''
+    };
 
   }
 
