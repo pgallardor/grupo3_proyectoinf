@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component , ViewChildren, ViewChild, QueryList } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Slides } from 'ionic-angular';
 import { HttpClient} from "@angular/common/http";
 import { LoadingController } from "ionic-angular";
 
@@ -18,6 +18,8 @@ import { LoadingController } from "ionic-angular";
 export class AlmuerzoPorTipoPage {
   tipo : any = {};
   nombre_menu : any ;
+  @ViewChildren(Slides) slides: QueryList<Slides>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,
               public modal:ModalController, public loading: LoadingController) {
     let load = this.loading.create({content: 'Espere un momento'});
@@ -43,26 +45,27 @@ export class AlmuerzoPorTipoPage {
     console.log(menu);
   }
 
-  openModal_precio(plato, menu, casino) {
+  openModal_precio(i) {
 
-    const datos = {
-      idplato : plato,
-      nombremenu : menu,
-      idcasino : casino
-    };
+console.log("i: " + i);
+      let cosa = this.slides.toArray(), j = cosa[i].realIndex; 
+      console.log("j: " + j);
 
-    const myModal = this.modal.create('PmodalPage', {data: datos });
+      var datos = {
+       idplato : this.tipo.parsed_response[i].menus[j].id_plato,
+       nombremenu : this.tipo.menu,
+       idcasino : this.tipo.parsed_response[i].id_casino
+     };
 
-    myModal.present();
-  };
+      console.log("Hola \n");
+      console.log("id_plato: " + datos.idplato);
+      console.log("nombremenu: " + datos.nombremenu);
+      console.log("idcasino: " + datos.idcasino);
 
-  openModal_nutricion(plato) {
 
+      const myModal = this.modal.create('PmodalPage', {data: datos  });
 
-
-    const myModal = this.modal.create('InfomodalPage', {data: plato  });
-
-    myModal.present();
+      myModal.present();
   };
 
 }
