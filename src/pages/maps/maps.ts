@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { GoogleMapComponent } from '../../components/google-map/google-map';
+import { HttpClient } from "@angular/common/http";
+
 /**
  * Generated class for the MapsPage page.
  *
@@ -15,18 +17,14 @@ import { GoogleMapComponent } from '../../components/google-map/google-map';
   templateUrl: 'maps.html',
 })
 export class MapsPage {
- 
-    @ViewChild(GoogleMapComponent) mapComponent: GoogleMapComponent;
- 
-    constructor() {
- 
-    }
- 
-    testMarker(){
- 
-        let center = this.mapComponent.map.getCenter();
-        this.mapComponent.addMarker(center.lat(), center.lng());
- 
-    }
- 
+    casino:any ={};
+    id_casino:any;
+  constructor(public navCtrl: NavController, public http: HttpClient,
+              public navParams: NavParams) {
+    
+    this.id_casino =this.navParams.get('data');
+	  console.log(this.id_casino);
+  	
+  }
+
 }

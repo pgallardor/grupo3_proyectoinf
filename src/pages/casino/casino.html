@@ -21,7 +21,7 @@
         
     <img [src]="'../assets/img/' + item.id + '.jpg'" (click)="OtraPagina(item.id)">
             <ion-fab right top>
-                <button ion-fab (click)="Mapita()" z-index="10" only-icon>
+                <button ion-fab (click)="Mapita(item.id)" z-index="10" only-icon>
                 <ion-icon name="pin"></ion-icon>
               </button>
               </ion-fab>

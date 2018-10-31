@@ -14,7 +14,7 @@ import {MapsPage} from "../maps/maps";
 export class CasinoPage {
    
    casinos: any;
-   images=["../assets/img/Plato.jpg"];
+   
   constructor(public navCtrl: NavController, public http: HttpClient, public load: LoadingController) {
     let loading = this.load.create({content: 'Cargando'});
     loading.present();
@@ -29,7 +29,7 @@ export class CasinoPage {
     console.log(id);
     this.navCtrl.push(FAlmuerzoPage, {data: id});
   }
-  Mapita(){
-this.navCtrl.push(MapsPage);
+  Mapita(id){
+this.navCtrl.push(MapsPage,{data:id});
 }
 }
