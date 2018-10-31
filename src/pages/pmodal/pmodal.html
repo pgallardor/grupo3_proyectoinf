@@ -24,7 +24,7 @@
 <ion-content >
   <ion-item-group *ngFor="let a of detalle">
     <ion-item-divider color="secondary">
-      <ion-row center>
+      <ion-row>
         <ion-col col-9 >
           <h5 align="left">{{a.tipo_agregado}}</h5>
         </ion-col>
@@ -34,9 +34,59 @@
       </ion-row>
     </ion-item-divider>
   </ion-item-group>
-  <ion-item>
-    <p>*Opciones agregan pan y jugo</p>
+
+
+  <ion-item *ngIf="ensaladas; else no_ensalada" no-padding>
+    <ion-row >
+      <ion-col>
+        <h5>Ensalada del día </h5>
+      </ion-col>
+    </ion-row>
+    <p *ngFor="let e of ensaladas" text-center="true" style="font-weight: bold; color: #222222">{{e.ensalada}}</p>
+  </ion-item>
+
+  <ion-item *ngIf="sopas; else no_sopa" no-padding>
+    <ion-row >
+      <ion-col>
+        <h5>Sopa del día </h5>
+      </ion-col>
+    </ion-row>
+    <p *ngFor="let e of sopas" text-center="true" style="font-weight: bold; color: #222222">{{e.sopa}}</p>
+  </ion-item>
+
+  <ion-item *ngIf="postres" no-padding>
+    <ion-row >
+      <ion-col>
+        <h5>Postre del día </h5>
+      </ion-col>
+    </ion-row>
+    <p *ngFor="let e of postres" text-center="true" style="font-weight: bold; color: #222222">{{e.postre}}</p>
+  </ion-item>
+
+  <ion-item no-padding>
+    <p text-center="true">*Opciones agregan pan y jugo</p>
   </ion-item>
 
 
+  <ng-template #no_sopa>
+    <ion-item no-padding>
+      <ion-row >
+        <ion-col>
+          <h5>Sopa del día </h5>
+        </ion-col>
+      </ion-row>
+      <p text-center="true" style="font-weight: bold; color: #222222">No hay información de sopas</p>
+    </ion-item>
+  </ng-template>
+
+  <ng-template #no_ensalada>
+    <ion-item no-padding>
+      <ion-row >
+        <ion-col>
+          <h5>Ensalada de día </h5>
+        </ion-col>
+      </ion-row>
+      <p text-center="true" style="font-weight: bold; color: #222222">No hay información de ensaladas</p>
+    </ion-item>
+  </ng-template>
 </ion-content>
