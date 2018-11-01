@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
-import { GoogleMapComponent } from '../../components/google-map/google-map';
 import { HttpClient } from "@angular/common/http";
 
 /**

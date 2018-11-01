@@ -14,7 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {SettingPage} from "../pages/setting/setting";
 import {FAlmuerzoPage} from "../pages/f-almuerzo/f-almuerzo";
 import {AlmuerzoPorTipoPage} from "../pages/almuerzo-por-tipo/almuerzo-por-tipo";
-import { ComponentsModule } from '../components/components.module';
+
 import {MapsPage} from "../pages/maps/maps";
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import {MapsPage} from "../pages/maps/maps";
   imports: [
     BrowserModule,
     HttpClientModule,
-    ComponentsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
