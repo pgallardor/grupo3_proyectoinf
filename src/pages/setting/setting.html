@@ -7,14 +7,35 @@
 <ion-header>
 
   <ion-navbar color ="myapp3">
-    <ion-title>Configuración</ion-title>
+    <ion-title>Comentarios</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="limpiar_comentario()" icon-only>
+        <ion-icon name="trash">
+
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-<ion-card>
-algo aqui
-</ion-card>
+<ion-content>
+  <ion-list>
+    <ion-item text-wrap>
+      <ion-label color="primary" floating> Si tienes algun comentario de la aplicación ingrésalo aquí</ion-label>
+      <ion-textarea rows="5" id="Comment" [(ngModel)]="datos.comentario"></ion-textarea>
+    </ion-item>
+
+    <ion-item text-wrap>
+        <ion-label color="primary" floating> Correo de contacto</ion-label>
+        <ion-input type="email" id="correo" clearInput [(ngModel)]="datos.correo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button center ion-button (click)="comentario_enviado()" icon-only color="primary" block small >
+        Enviar comentario <ion-icon name="send" ></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
 </ion-content>
