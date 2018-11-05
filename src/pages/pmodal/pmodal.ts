@@ -18,6 +18,7 @@ import { HttpClient} from "@angular/common/http";
 })
 export class PmodalPage {
   detalle: any;
+  agregados: any;
   nombreplato: any = 0;
   ensaladas: any;
   postres: any;
@@ -44,14 +45,15 @@ export class PmodalPage {
     });
     this.http.get('https://casinos-backend.herokuapp.com/queries/plato-agregado/'+id_plato_visto).subscribe(response2 => {
       /*console.log(response2);*/
-      if (response2.ensaladas.length>0){
-        this.ensaladas = response2.ensaladas;
+      this.agregados = response2;
+      if (this.agregados .ensaladas.length>0){
+        this.ensaladas = this.agregados.ensaladas;
       }
-      if (response2.sopas.length>0){
-        this.sopas = response2.sopas;
+      if (this.agregados.sopas.length>0){
+        this.sopas = this.agregados.sopas;
       }
-      if (response2.postres.length>0){
-        this.postres = response2.postres;
+      if (this.agregados.postres.length>0){
+        this.postres = this.agregados.postres;
       }
 
 
