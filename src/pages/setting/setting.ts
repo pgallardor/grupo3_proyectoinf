@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AlertController} from "ionic-angular";
 import {isUndefined} from "ionic-angular/util/util";
+import { HttpClient } from "@angular/common/http";
 
 /**
  * Generated class for the SettingPage page.
@@ -18,7 +19,7 @@ import {isUndefined} from "ionic-angular/util/util";
 export class SettingPage {
   state : any = 0;
   datos : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public http: HttpClient) {
     this.datos = {
       comentario: '',
       correo: ''
@@ -54,6 +55,13 @@ export class SettingPage {
     }
     if(this.state === 0){
       console.log("Sin problema");
+      this.http.post("https://casinos-backend.herokuapp.com/api/comment", this.datos)
+        .subscribe(response => {
+            this.success();
+        },
+          error => {
+            console.log(error);
+          })
     }
     else{
       console.log("Algo falta");
@@ -62,12 +70,11 @@ export class SettingPage {
 
   }
 
-  alerta(){
+  success(){
     const alert = this.alertCtrl.create(
       {
-        title : "Error!",
-        subTitle : "Se debe ingresar comentario y correo para continuar",
-        buttons : ["Cancelar"]
+        title : "Comentario enviado exitosamente!",
+        buttons : ["Listo"]
       }
     );
     alert.present();

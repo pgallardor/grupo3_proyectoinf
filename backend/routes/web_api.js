@@ -36,13 +36,14 @@ router.get('/menus/:casino', (req, res) =>{
 router.post('/comment', (req, res) => {
   let fecha = new Date();
   knex('comentario').insert({
-    texto: req.body.comentario ,
-    correo: req.body.correo ,
-    fecha
-  }).returning([id]).then(response => {
-      res.state(200).send('Success!');
+    texto: req.body.comentario,
+    correo: req.body.correo,
+    fecha: fecha.toDateString()
+  }).returning(['id']).then(response => {
+      res.status(200).send('Success!');
   }).catch( err => {
-      res.state(500);
+      console.log(err);
+      res.status(500);
   })
 })
 
