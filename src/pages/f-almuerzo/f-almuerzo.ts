@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { Component , ViewChildren, ViewChild, QueryList } from '@angular/core';
+import { IonicPage, NavController, NavParams,ModalController, Slides } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { LoadingController } from "ionic-angular";
 
@@ -18,6 +18,9 @@ import { LoadingController } from "ionic-angular";
 export class FAlmuerzoPage {
 	casino: any = {};
 	id_casino: any = 0;
+  //cosa: any = [];
+@ViewChildren(Slides) slides: QueryList<Slides>;
+
   constructor(public navCtrl: NavController, public http: HttpClient,private modal: ModalController,
               public navParams: NavParams, public load: LoadingController) {
     let loading = this.load.create({content: 'Espere un momento'});
@@ -28,8 +31,8 @@ export class FAlmuerzoPage {
 	      console.log(response);
 	      this.casino = response;
 	      loading.dismiss();
+        //this.cosa = this.slides.toArray();
 	    })
-
   }
 
   ionViewDidLoad() {
@@ -37,23 +40,27 @@ export class FAlmuerzoPage {
   }
 
 
-   openModal_precio(plato, menu, casino) {
+   openModal_precio(i) {
+      console.log("i: " + i);
+      let cosa = this.slides.toArray(), j = cosa[i].realIndex; 
+      console.log("j: " + j);
 
-     const datos = {
-       idplato : plato,
-       nombremenu : menu,
-       idcasino : casino
+      var datos = {
+       idplato : this.casino.parsed_response[i].menus[j].id_plato,
+       nombremenu : this.casino.parsed_response[i].tipo,
+       idcasino : this.id_casino
      };
+
+      console.log("Hola \n");
+      console.log("id_plato: " + datos.idplato);
+      console.log("nombremenu: " + datos.nombremenu);
+      console.log("idcasino: " + datos.idcasino);
+
 
       const myModal = this.modal.create('PmodalPage', {data: datos  });
 
       myModal.present();
+
     };
 
-  openModal_nutricion(plato) {
-
-    const myModal = this.modal.create('InfomodalPage', {data: plato  });
-
-    myModal.present();
-  };
 }
