@@ -14,8 +14,8 @@
 
 
 <ion-content class="card-background-page">
-<ion-list>
-    <ion-item-sliding *ngFor="let item of casinos" style="width=300px">
+<ion-list *ngIf="casinos && casinos.length > 0; else no_menus">
+    <ion-item-sliding *ngFor="let item of casinos" style="width:300px">
       <ion-item>
         <ion-card >
         
@@ -31,6 +31,26 @@
       </ion-item>
     </ion-item-sliding>
   </ion-list>
+
+  <ng-template #no_menus>
+      <ion-row >
+        <ion-col>
+          <h5 text-center>Lo sentimos </h5>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3></ion-col>
+        <ion-col col-6>
+          <img [src]="'../assets/img/chefcito.jpeg'" >
+        </ion-col>
+        <ion-col col-auto> </ion-col>
+      </ion-row>
+      <ion-row text-center>
+        <ion-col>
+          <p style="font-weight: bold; color: #222222">No hay menús disponibles el día de hoy</p>
+        </ion-col>
+      </ion-row>
+  </ng-template>
 
 
   <!--<ion-list> 

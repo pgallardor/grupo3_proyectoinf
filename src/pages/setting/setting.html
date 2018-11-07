@@ -9,9 +9,8 @@
   <ion-navbar color ="myapp3"  style="text-align: center">
     <ion-title>Comentarios</ion-title>
     <ion-buttons end>
-      <button ion-button (click)="limpiar_comentario()" icon-only>
-        <ion-icon name="trash">
-
+      <button ion-button (click)="limpiar_comentario()" icon-only color="">
+        <ion-icon [name]="icon_class">
         </ion-icon>
       </button>
     </ion-buttons>
@@ -24,12 +23,12 @@
   <ion-list>
     <ion-item text-wrap>
       <ion-label color="primary" floating> Si tienes algun comentario de la aplicación ingrésalo aquí</ion-label>
-      <ion-textarea rows="5" id="Comment" [(ngModel)]="datos.comentario"></ion-textarea>
+      <ion-textarea rows="5" id="Comment" (ionChange)="checkIcon()" [(ngModel)]="datos.comentario"></ion-textarea>
     </ion-item>
 
     <ion-item text-wrap>
         <ion-label color="primary" floating> Correo de contacto</ion-label>
-        <ion-input type="email" id="correo" clearInput [(ngModel)]="datos.correo"></ion-input>
+        <ion-input type="email" id="correo" clearInput (ionChange)="checkIcon()" [(ngModel)]="datos.correo"></ion-input>
     </ion-item>
 
     <ion-item>

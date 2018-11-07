@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AlertController} from "ionic-angular";
+import {IonicPage,  NavController, NavParams} from 'ionic-angular';
+import {AlertController, LoadingController} from "ionic-angular";
 import {isUndefined} from "ionic-angular/util/util";
 import { HttpClient } from "@angular/common/http";
 
@@ -19,16 +19,24 @@ import { HttpClient } from "@angular/common/http";
 export class SettingPage {
   state : any = 0;
   datos : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public http: HttpClient) {
+  icon_class;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController,
+              public http: HttpClient,public load: LoadingController) {
     this.datos = {
       comentario: '',
       correo: ''
     };
-
+    this.icon_class = "ios-trash-outline";
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
+  }
+
+  checkIcon(){
+    if (this.datos.comentario === '' && this.datos.correo === '')
+      this.icon_class = "ios-trash-outline";
+    else this.icon_class = "ios-trash";
   }
 
   comentario_enviado(){
@@ -54,10 +62,15 @@ export class SettingPage {
       this.state = 1;
     }
     if(this.state === 0){
+      let loading = this.load.create({content: 'Enviando comentario'});
+      loading.present();
       console.log("Sin problema");
       this.http.post("https://casinos-backend.herokuapp.com/api/comment", this.datos)
         .subscribe(response => {
+            loading.dismiss();
             this.success();
+            this.limpiar_comentario();
+
         },
           error => {
             console.log(error);
