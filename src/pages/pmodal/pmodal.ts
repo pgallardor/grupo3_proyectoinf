@@ -43,15 +43,17 @@ export class PmodalPage {
 
     });
     this.http.get('https://casinos-backend.herokuapp.com/queries/plato-agregado/'+id_plato_visto).subscribe(response2 => {
-      /*console.log(response2);*/
-      if (response2.ensaladas.length>0){
-        this.ensaladas = response2.ensaladas;
+	let datos : any; 
+	datos = response2; 
+      /*console.log(datos);*/
+      if (datos.ensaladas.length>0){
+        this.ensaladas = datos.ensaladas;
       }
-      if (response2.sopas.length>0){
-        this.sopas = response2.sopas;
+      if (datos.sopas.length>0){
+        this.sopas = datos.sopas;
       }
-      if (response2.postres.length>0){
-        this.postres = response2.postres;
+      if (datos.postres.length>0){
+        this.postres = datos.postres;
       }
 
 
