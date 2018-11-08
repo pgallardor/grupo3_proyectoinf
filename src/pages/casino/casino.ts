@@ -14,6 +14,7 @@ import {MapsPage} from "../maps/maps";
 export class CasinoPage {
    
    casinos: any;
+   nombre_casino: any;
    
   constructor(public navCtrl: NavController, public http: HttpClient, public load: LoadingController) {
     let loading = this.load.create({content: 'Cargando'});

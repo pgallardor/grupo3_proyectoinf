@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar color="myapp3" style="text-align: center">
-    <ion-title>Mis Casinos</ion-title>
+  <ion-navbar *ngIf="nombre_casino" color="myapp3" style="text-align: center">
+    <ion-title>Casinos {{nombre_casino.nombre}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +16,6 @@
 <ion-content class="card-background-page">
   <ion-list *ngIf="casinos && casinos.length > 0; else no_menus">
     <ion-row>
-
       <ion-col col-12>
         <ion-item-sliding *ngFor="let item of casinos">
           <ion-item>
