@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams, ViewController} from 'ionic-angular';
 import { HttpClient} from "@angular/common/http";
 
 
@@ -24,7 +24,10 @@ export class PmodalPage {
   postres: any;
   sopas: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private view: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,
+              private view: ViewController, public load: LoadingController) {
+    let loading = this.load.create({content: 'Cargando precios y agregados'});
+    loading.present();
     const datos = this.navParams.get('data');
     const id_plato_visto = datos.idplato;
     const menu = datos.nombremenu;
@@ -49,13 +52,22 @@ export class PmodalPage {
       if (this.agregados .ensaladas.length>0){
         this.ensaladas = this.agregados.ensaladas;
       }
+      else{
+        this.ensaladas = [];
+      }
       if (this.agregados.sopas.length>0){
         this.sopas = this.agregados.sopas;
+      }
+      else{
+        this.sopas = [];
       }
       if (this.agregados.postres.length>0){
         this.postres = this.agregados.postres;
       }
-
+      else{
+        this.postres = [];
+      }
+      loading.dismiss();
 
       /*console.log(this.sopas);
       console.log(this.ensaladas);
