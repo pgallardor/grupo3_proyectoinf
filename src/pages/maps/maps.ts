@@ -16,13 +16,21 @@ import { HttpClient } from "@angular/common/http";
   templateUrl: 'maps.html',
 })
 export class MapsPage {
-    casino:any ={};
-    id_casino:any;
+  casino:any ={};
+  id_casino:any;
+  nombre_casino: any;
   constructor(public navCtrl: NavController, public http: HttpClient,
               public navParams: NavParams) {
     
     this.id_casino =this.navParams.get('data');
 	  console.log(this.id_casino);
+    this.http.get('https://casinos-backend.herokuapp.com/queries/nombre-casino/'+this.id_casino).subscribe(response => {
+      console.log(response);
+      this.nombre_casino = response;
+      this.nombre_casino = this.nombre_casino[0].nombre
+      console.log(this.nombre_casino)
+
+    })
   	
   }
 

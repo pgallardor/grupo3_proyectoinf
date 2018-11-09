@@ -16,7 +16,7 @@ import {AlmuerzoPorTipoPage} from "../almuerzo-por-tipo/almuerzo-por-tipo";
   templateUrl: 'buscador.html',
 })
 export class BuscadorPage{
-  temp:any = [];
+  temp:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClient, public loading: LoadingController) {
 

@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar *ngIf="nombre_casino" color="myapp3" style="text-align: center">
-    <ion-title>Casinos {{nombre_casino.nombre}}</ion-title>
+  <ion-navbar color="myapp3" style="text-align: center">
+    <ion-title>Casinos</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -36,24 +36,25 @@
   </ion-list>
 
 </ion-content>
-
   <ng-template #no_menus>
-    <ion-row >
-      <ion-col>
-        <h5 text-center>Lo sentimos </h5>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3></ion-col>
-      <ion-col col-6>
-        <img [src]="'../assets/img/chefcito.jpeg'" >
-      </ion-col>
-      <ion-col col-auto> </ion-col>
-    </ion-row>
-    <ion-row text-center>
-      <ion-col>
-        <p style="font-weight: bold; color: #222222">No hay menús disponibles el día de hoy</p>
-      </ion-col>
-    </ion-row>
+    <ion-list *ngIf="casinos && casinos.length == 0">
+      <ion-row >
+        <ion-col>
+          <h5 text-center>Lo sentimos </h5>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3></ion-col>
+        <ion-col col-6>
+          <img [src]="'../assets/img/chefcito.jpeg'" >
+        </ion-col>
+        <ion-col col-auto> </ion-col>
+      </ion-row>
+      <ion-row text-center>
+        <ion-col>
+          <p style="font-weight: bold; color: #222222">No hay menús disponibles el día de hoy</p>
+        </ion-col>
+      </ion-row>
+    </ion-list>
   </ng-template>
 
